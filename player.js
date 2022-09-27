@@ -66,6 +66,12 @@ const app = {
             path: "./assets/music/The Weeknd - Out Of Time (Official Lyric Video).mp3",
             image: "./assets/img/musical-note.png"
         },
+        {
+            name: "Relaxing",
+            singer: "Unknown",
+            path: "./assets/music/relax.pm3",
+            image: "./assets/img/musical-note.png"
+        }
     ],
     setconfig: function (key, value) {
         this.config[key] = value;
