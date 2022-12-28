@@ -22,6 +22,7 @@ const app = {
     isPlaying: false,
     isRand: false,
     isRepeat: false,
+    volumeValue: 100,
     config: JSON.parse(localStorage.getItem(PLAYER_STORAGE_KEY)) || {},
     songs: [
         {
@@ -74,6 +75,8 @@ const app = {
     getConfig: function () {
         this.isRand = this.config.isRand;
         this.isRepeat = this.config.isRepeat;
+        this.volumeValue = Number.parseInt(this.config.volumeValue);
+        console.log(this.volumeValue);
     },
     defineProperties: function () {
         Object.defineProperty(this, 'currentSong', {
@@ -153,8 +156,9 @@ const app = {
         };
         volume.onchange = function (e) {
             const value = e.target.value;
-            // console.log(value);
+            console.log(value);
             audio.volume = value / 100;
+            _this.setconfig('volumeValue', value);
         }
         btnRand.onclick = function () {
             _this.isRand = !_this.isRand;
@@ -250,6 +254,8 @@ const app = {
         this.render();
         btnRepeat.classList.toggle('active', this.isRepeat);
         btnRand.classList.toggle('active', this.isRand);
+        audio.volume = this.volumeValue / 100;
+        volume.value = this.volumeValue;
     }
 }
 app.start();
